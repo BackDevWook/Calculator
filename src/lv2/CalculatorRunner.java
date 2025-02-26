@@ -9,11 +9,11 @@ public class CalculatorRunner {
 
         /* Note
          - 발견된 문제 & 수정할 점
-         a42+12 와 같은 숫자와 문자가 같이 입력된 수식 처리하기
          실수+정수 형태의 수식 처리하기
 
          - fixed
          '_', '=' 등이 입력되어도 수식이 계산되는 점 수정 // 25.02.26
+         a42+12 와 같은 숫자와 문자가 같이 입력된 수식 처리하기 // 25.02.26
         */
 
 
@@ -42,8 +42,8 @@ public class CalculatorRunner {
                 break;
             }
             if (formula.trim().equalsIgnoreCase("delete")) { // 계산 첫번째 기록부터 삭제 (대소문자, 앞 뒤 공백 무시)
-                if (count == 0) {
-                    System.out.println("삭제할 기록이 없습니다."); // 기록이 없을 경우 에러 방지
+                if (count == 0) { // 기록이 없을 경우 인덱스 범위 초과 에러 방지
+                    System.out.println("삭제할 기록이 없습니다.");
                     System.out.println("수식을 입력하세요... (항은 2개까지 지원합니다. ex: 43+25)");
                     continue;
                 }
@@ -52,7 +52,7 @@ public class CalculatorRunner {
                 System.out.println("삭제 완료.\n.\n.\n.");
 
                 // 삭제 된 기록 재출력
-                System.out.print("계산 기록 : " );
+                System.out.print("계산 기록 : ");
                 for (int i = 0; i < count; i++) { // 카운팅 된 계산횟수 만큼 기록 출력
                     if (calculator.getResults(i) % 1 != 0) { // 결과 값이 실수일 경우
                         System.out.print(calculator.getResults(i) + " ");
@@ -65,25 +65,24 @@ public class CalculatorRunner {
                 System.out.println("수식을 입력하세요... (항은 2개까지 지원합니다. ex: 43+25)");
 
                 continue;
-
             }
 
             // 연산자 찾기
             for (int i = 0; i < formula.length(); i++) {
-                Character find = formula.charAt(i);
-                if (find == '_' || find == '=') {
-                    System.out.println("잘못된 부호입니다.");
-                }
+                Character find = formula.charAt(i); // 한 글자씩 검사하기
                 if (find == '+' || find == '-' || find == '*' || find == '/') {
-                    operator = find;
-                    idx = i;
+                    operator = find; // 사용할 연산자 초기화
+                    idx = i; // 연산자 인덱스 초기화
+                    continue; // 연산자 찾았으면 건너뛰기
+                } else if (!Character.isDigit(find)) { // 숫자가 아닌 녀석이 있는지 찾기
+                    idx = -1;
                     break;
                 }
             }
 
-            // 연산자가 없을 경우 다시 입력
+            // 연산자가 없거나 잘못된 수식일 경우 처음부터 다시 시작
             if (idx == -1) {
-                System.out.println("다시 입력해주세요.");
+                System.out.println("잘못된 수식입니다, 다시 입력해주세요.");
                 continue;
             }
 
@@ -104,7 +103,7 @@ public class CalculatorRunner {
                     result = calculator.multiple(num1, num2);
                     break;
                 case '/':
-                    if(num2 == 0) { // 0으로 나눌 시 계산기 다시 실행
+                    if (num2 == 0) { // 0으로 나눌 시 계산기 다시 실행
                         System.out.println("0으로 나눌 수 없습니다, 다시 입력하세요.");
                         continue;
                     } else {
@@ -114,7 +113,7 @@ public class CalculatorRunner {
                     break;
             }
 
-            if(isInteger) {
+            if (isInteger) {
                 System.out.println("계산 결과 : " + (int) result);
                 calculator.setResultsList(result); // 결과 값은 double 인 상태로 저장
             } else {

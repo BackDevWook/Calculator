@@ -16,6 +16,11 @@ public class CalculatorLevelOne {
 
 
         while (true) { // 계산기는 항상 실행
+
+            // 반복 실행시 초기값 초기화
+            operator = 0;
+            idx = -1;
+
             String formula = sc.nextLine().trim(); // 수식을 입력받는 변수, trim으로 입력시 앞 뒤 공백 제거
 
             if (formula.equalsIgnoreCase("exit")) { // exit 입력시 계산기 종료 (대소문자 무시)
@@ -24,15 +29,18 @@ public class CalculatorLevelOne {
             }
             // 연산자 찾기
             for (int i = 0; i < formula.length(); i++) {
-                char find = formula.charAt(i);
+                Character find = formula.charAt(i); // 한 글자씩 검사하기
                 if (find == '+' || find == '-' || find == '*' || find == '/') {
-                    operator = find;
-                    idx = i;
+                    operator = find; // 사용할 연산자 초기화
+                    idx = i; // 연산자 인덱스 초기화
+                    continue; // 연산자 찾았으면 건너뛰기
+                } else if (!Character.isDigit(find)) { // 숫자가 아닌 녀석이 있는지 찾기
+                    idx = -1;
                     break;
                 }
             }
 
-            // 연산자가 없을 경우 다시 입력
+            // 연산자가 없거나 잘못된 수식일 경우 처음부터 다시 시작
             if (idx == -1) {
                 System.out.println("다시 입력해주세요.");
                 continue;
@@ -65,6 +73,7 @@ public class CalculatorLevelOne {
                     }
                     break;
             }
+
             if(isInteger) {
                 System.out.println("계산 결과 : " + (int) result);
             } else {
