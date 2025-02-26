@@ -7,6 +7,16 @@ public class CalculatorRunner {
         Scanner sc = new Scanner(System.in); // 사용자에게 입력받기 위해 스캐너 객체 생성
         Calculator calculator = new Calculator(); // Calculator 클래스 사용을 위한 객체 생성
 
+        /* Note
+         - 발견된 문제 & 수정할 점
+         a42+12 와 같은 숫자와 문자가 같이 입력된 수식 처리하기
+         실수+정수 형태의 수식 처리하기
+
+         - fixed
+         '_', '=' 등이 입력되어도 수식이 계산되는 점 수정 // 25.02.26
+        */
+
+
         // 초기 세팅
         char operator = 0; // 연산자로 다시 초기화할 예정
         int idx = -1; // 연산자의 인덱스
@@ -37,9 +47,9 @@ public class CalculatorRunner {
                     System.out.println("수식을 입력하세요... (항은 2개까지 지원합니다. ex: 43+25)");
                     continue;
                 }
-                calculator.removeResults();
+                calculator.removeResults(); // 기록 삭제 메서드
                 count--; // 기록 출력을 위한 카운팅 1 감소
-                System.out.println("삭제 완료.\n.\n.\n.\n.");
+                System.out.println("삭제 완료.\n.\n.\n.");
 
                 // 삭제 된 기록 재출력
                 System.out.print("계산 기록 : " );
