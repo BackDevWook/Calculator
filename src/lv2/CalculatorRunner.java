@@ -7,21 +7,13 @@ public class CalculatorRunner {
         Scanner sc = new Scanner(System.in); // 사용자에게 입력받기 위해 스캐너 객체 생성
         Calculator calculator = new Calculator(); // Calculator 클래스 사용을 위한 객체 생성
 
-        /* Note
-         - 발견된 문제 & 수정할 점
-         실수+정수 형태의 수식 처리하기
-
-         - fixed
-         '_', '=' 등이 입력되어도 수식이 계산되는 점 수정 // 25.02.26
-         a42+12 와 같은 숫자와 문자가 같이 입력된 수식 처리하기 // 25.02.26
-        */
-
-
         // 초기 세팅
         char operator = 0; // 연산자로 다시 초기화할 예정
+        int operatorCnt = 0; // 연산자가 2개 이상 입력되있을 때 오류를 방지할 변수
         int idx = -1; // 연산자의 인덱스
         boolean isInteger = true; // 기본 결과값은 정수로 설정
         int count = 0; // 계산 횟수 카운팅
+
 
         System.out.println("계산기 Lv.2 에 오신 것을 환영합니다.");
         System.out.println("exit 타이핑 시 종료됩니다.");
@@ -73,7 +65,7 @@ public class CalculatorRunner {
                 if (find == '+' || find == '-' || find == '*' || find == '/') {
                     operator = find; // 사용할 연산자 초기화
                     idx = i; // 연산자 인덱스 초기화
-                    continue; // 연산자 찾았으면 건너뛰기
+                    operatorCnt++; // 연산자가 2개 이상일 경우 아래에서 오류 처리
                 } else if (!Character.isDigit(find)) { // 숫자가 아닌 녀석이 있는지 찾기
                     idx = -1;
                     break;
@@ -81,7 +73,7 @@ public class CalculatorRunner {
             }
 
             // 연산자가 없거나 잘못된 수식일 경우 처음부터 다시 시작
-            if (idx == -1) {
+            if (idx == -1 || operatorCnt >= 2) {
                 System.out.println("잘못된 수식입니다, 다시 입력해주세요.");
                 continue;
             }
