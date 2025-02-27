@@ -6,23 +6,23 @@ public enum Operators {
 
     // 사칙연산에 사용할 열거형과 메서드
     ADD('+') {
-        public <T extends Number> T calculate(T a, T b) {
-            return add(a, b);
+        public double calculate(double num1, double num2) {
+            return add(num1, num2);
         }
     },
     SUBSTRACT('-') {
-        public <T extends Number> T calculate(T a, T b) {
-            return subtract(a, b);
+        public double calculate(double num1, double num2) {
+            return subtract(num1, num2);
         }
     },
     MULTIPLE('*') {
-        public <T extends Number> T calculate(T a, T b) {
-            return multiply(a, b);
+        public double calculate(double num1, double num2) {
+            return multiply(num1, num2);
         }
     },
     DIVIDE('/') {
-        public <T extends Number> T calculate(T a, T b) {
-            return divide(a, b);
+        public double calculate(double num1, double num2) {
+            return divide(num1, num2);
         }
     };
 
@@ -49,45 +49,29 @@ public enum Operators {
      */
 
     // 더하기
-    public <T extends Number> T add(T num1, T num2) {
-        if (num1 instanceof Integer && num2 instanceof Integer) {
-            return (T) Integer.valueOf((Integer) num1 + (Integer) num2);
-        } else {
-            return (T) Double.valueOf((Double) num1 + (Double) num2);
-        }
+    public double add(double num1, double num2) {
+        return num1 + num2;
     }
 
     // 빼기
-    public <T extends Number> T subtract(T num1, T num2) {
-        if (num1 instanceof Integer && num2 instanceof Integer) {
-            return (T) Integer.valueOf((Integer) num1 - (Integer) num2);
-        } else {
-            return (T) Double.valueOf((Double) num1 - (Double) num2);
-        }
+    public double subtract(double num1, double num2) {
+        return num1 - num2;
     }
 
     // 곱하기
-    public <T extends Number> T multiply(T num1, T num2) {
-        if (num1 instanceof Integer && num2 instanceof Integer) {
-            return (T) Integer.valueOf((Integer) num1 * (Integer) num2);
-        } else {
-            return (T) Double.valueOf((Double) num1 * (Double) num2);
-        }
+    public double multiply(double num1, double num2) {
+        return num1 * num2;
     }
 
     // 나누기
-    public <T extends Number> T divide(T num1, T num2) {
-        if (num2.doubleValue() == 0) {
+    public double divide(double num1,double num2) {
+        if (num2 == 0) {
             throw new NumberFormatException("0으로 나눌 수 없습니다."); // 두 번째 숫자가 0일 경우 에러처리
         }
-        if (num1 instanceof Integer && num2 instanceof Integer) {
-            return (T) Integer.valueOf((Integer) num1 / (Integer) num2);
-        } else {
-            return (T) Double.valueOf((Double) num1 / (Double) num2);
-        }
+        return num1 / num2;
     }
 
-    public abstract <T extends Number> T calculate(T a, T b);
+    public abstract double calculate(double a,double b); //
 
     // Runner에서 받은 연산자를 enum에 반환
     public static Operators getOperator(char operator) {
