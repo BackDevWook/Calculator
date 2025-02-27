@@ -2,10 +2,10 @@ package lv2;
 
 import java.util.Scanner;
 
-public class CalculatorRunner {
+public class CalculatorLv2Runner {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in); // 사용자에게 입력받기 위해 스캐너 객체 생성
-        Calculator calculator = new Calculator(); // Calculator 클래스 사용을 위한 객체 생성
+        CalculatorLv2 calculator = new CalculatorLv2(); // Calculator 클래스 사용을 위한 객체 생성
 
         // 초기 세팅
         char operator = 0; // 연산자로 다시 초기화할 예정

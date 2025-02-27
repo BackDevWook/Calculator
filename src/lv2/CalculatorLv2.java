@@ -2,7 +2,7 @@ package lv2;
 
 import java.util.ArrayList;
 
-public class Calculator {
+public class CalculatorLv2 {
 
     private ArrayList<Double> resultsList = new ArrayList<>(); // 연산 결과를 저장할 리스트 생성
 
