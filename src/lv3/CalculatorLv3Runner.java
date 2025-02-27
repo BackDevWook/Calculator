@@ -36,7 +36,7 @@ public class CalculatorLv3Runner {
             double result = 0; // 연산 결과 변수 선언
 
             // 입력받은 수와 연산자를 enum에 반화하여 연산
-            Operators oper = Operators.getOperator(operator); // Operators enum 에 연산자 반환
+            Operators oper = Operators.getOperators(operator); // Operators enum 에 연산자 반환
             if (oper != null) {
                 result = oper.calculate(number1, number2);
                 } else {

@@ -71,10 +71,10 @@ public enum Operators {
         return num1 / num2;
     }
 
-    public abstract double calculate(double a,double b); //
+    public abstract double calculate(double a,double b); // 열거형의 calculate 메서드를 사용하기 위해 추상 메서드를 선언
 
     // Runner에서 받은 연산자를 enum에 반환
-    public static Operators getOperator(char operator) {
+    public static Operators getOperators(char operator) {
         for (Operators oper : Operators.values()) { // 열거된 연산자들
             if (oper.getOperator() == operator) { //
                 return oper;
