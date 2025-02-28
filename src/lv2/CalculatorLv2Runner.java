@@ -127,5 +127,6 @@ public class CalculatorLv2Runner {
             System.out.println("─────────────────────────"); // 경계선 밑 줄바꿈
             System.out.println("수식을 입력하세요... (항은 2개까지 지원합니다. ex: 43+25)");
         }
+        sc.close(); // 스캐너 객체 닫기
     }
 }

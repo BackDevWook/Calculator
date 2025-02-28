@@ -82,5 +82,6 @@ public class CalculatorLevelOne {
             }
 
         }
+        sc.close(); // 스캐너 객체 닫기
     }
 }

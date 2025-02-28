@@ -73,6 +73,6 @@ public class CalculatorLv3Runner {
 
         } // while 코드블럭
 
-
+        sc.close(); // 스캐너 객체 닫기
     }
 }
