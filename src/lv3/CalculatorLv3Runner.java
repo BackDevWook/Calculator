@@ -59,7 +59,7 @@ public class CalculatorLv3Runner {
                 IO.resultDisplayAndSave(result);
 
             } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("괄호 잘못된 수식입니다. 다시 입력하세요.");
+                System.out.println("잘못된 수식입니다. 다시 입력하세요.");
                 continue;
             } catch (NumberFormatException e) {
                 System.out.println("잘못된 수식입니다. 다시 입력하세요.");
