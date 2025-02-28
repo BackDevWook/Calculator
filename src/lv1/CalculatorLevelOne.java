@@ -9,6 +9,7 @@ public class CalculatorLevelOne {
         char operator = 0; // 연산자로 다시 초기화할 예정
         int idx = -1; // 연산자의 인덱스
         boolean isInteger = true; // 기본 결과값은 정수로 설정
+        int operCount = 0; // 연산자 갯수 카운팅 변수 -> 2개 이상일 경우 에러처리
 
         System.out.println("계산기 Lv.1 에 오신 것을 환영합니다.");
         System.out.println("exit 타이핑 시 종료됩니다.");
@@ -33,7 +34,7 @@ public class CalculatorLevelOne {
                 if (find == '+' || find == '-' || find == '*' || find == '/') {
                     operator = find; // 사용할 연산자 초기화
                     idx = i; // 연산자 인덱스 초기화
-                    continue; // 연산자 찾았으면 건너뛰기
+                    operCount++;
                 } else if (!Character.isDigit(find)) { // 숫자가 아닌 녀석이 있는지 찾기
                     idx = -1;
                     break;
@@ -41,7 +42,7 @@ public class CalculatorLevelOne {
             }
 
             // 연산자가 없거나 잘못된 수식일 경우 처음부터 다시 시작
-            if (idx == -1) {
+            if (idx == -1 || operCount >= 2) {
                 System.out.println("다시 입력해주세요.");
                 continue;
             }
