@@ -49,8 +49,8 @@ public class CalculatorLv3 {
     // 유틸리티
 
     // 연산 기록 삭제
-    public void removeResult() {
-        resultList.removeFirst();
+    public void removeResultFirst() {
+        resultList.removeFirst(); // 첫번째 요소 삭제 메서드
     }
 
     // 계산 결과 값 게터와 세터

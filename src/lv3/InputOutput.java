@@ -1,4 +1,6 @@
 package lv3;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class InputOutput {
@@ -24,8 +26,9 @@ public class InputOutput {
     // 연산 결과 출력 및 기록 저장
     public void resultDisplayAndSave(double result) {
         // 결과 값이 실수일 경우 실수로, 아닐 경우 정수 형태로 출력
+        DecimalFormat realNumResult = new DecimalFormat("#.###"); // 소수 셋째 자리까지 출력
         if (result % 1 != 0) { // 나머지가 0이 아닐 경우 --> 실수
-            System.out.println("§ 계산 결과 : " + result);
+            System.out.println("§ 계산 결과 : " + realNumResult.format(result));
             calculatorLv3.setResult(result);
         } else { // 실수가 아니라면 정수
             System.out.println("§ 계산 결과 : " + (int) result);
@@ -37,10 +40,11 @@ public class InputOutput {
     // 1. 로직 구현
     public void historyDisplayLogic(List resultList) { //
         System.out.print("§ 계산 기록 : ");
-        for (int i = 0; i < resultList.size(); i++) {
+        DecimalFormat realNumResultList = new DecimalFormat("#.###"); // 소수 셋째 자리까지 출력
+        for (int i = 0; i < resultList.size(); i++) { // 저장된 기록 수만큼 반복 출력
             this.resultHistory = (double) resultList.get(i);
             if(resultHistory % 1 != 0) {
-                System.out.print(resultHistory + " "); // 나머지가 0이 아니라면 실수로 출력
+                System.out.print(realNumResultList.format(resultHistory) + " "); // 나머지가 0이 아니라면 실수로 출력
             } else {
                 System.out.print((int) resultHistory + " "); // 실수가 아니면 정수로 출력
             }

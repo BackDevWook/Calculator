@@ -1,6 +1,5 @@
 package lv3;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 public class CalculatorLv3Runner {
@@ -36,7 +35,7 @@ public class CalculatorLv3Runner {
                         System.out.println("삭제할 기록이 없습니다.");
                         continue;
                     }
-                    calculatorLv3.removeResult(); // 첫번째 연산 기록 삭제 메서드
+                    calculatorLv3.removeResultFirst(); // 첫번째 연산 기록 삭제 메서드
                     count--; // 삭제할 때마다 연산 카운팅 1 감소
                     IO.historyDisplay(); // 계산 기록 출력 메서드
                     continue; // 연산 삭제 실행 후 계산기 다시 실행
