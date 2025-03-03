@@ -12,12 +12,14 @@ public class CalculatorLv3Runner {
         char operator = 0; // 연산자 초기화 변수
         int count = 0; // 연산 횟수 카운팅
 
+        IO.welcome();
+
         while (true) { // 계산기는 항상 실행
             operIdx = -1;
             operator = 0; // 반복 실행시 연산자와 인덱스 초기화
 
             try { // 예외가 발생하면 계산기 다시 실행
-                String formula = calculatorLv3.inputFomula(sc.nextLine().trim()); // 수식 입력받을 곳
+                String formula = sc.nextLine(); // 수식 입력받을 곳
 
                 // 연산자 위치 찾기
                 operator = calculatorLv3.findOperator(formula);
@@ -43,8 +45,8 @@ public class CalculatorLv3Runner {
 
 
                 // 연산자를 기준으로 수 나누기
-                double number1 = CalculatorLv3.parseNumber(formula.substring(0, operIdx).trim()); // 첫 번째 수 입력
-                double number2 = CalculatorLv3.parseNumber(formula.substring(operIdx + 1).trim()); // 두 번째 수 입력
+                double number1 = Double.parseDouble(formula.substring(0, operIdx).trim()); // 첫 번째 수 입력
+                double number2 = Double.parseDouble(formula.substring(operIdx + 1).trim()); // 두 번째 수 입력
 
                 double result = 0; // 연산 결과 변수 선언
 

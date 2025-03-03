@@ -19,6 +19,7 @@ public class CalculatorLevelOne {
         while (true) { // 계산기는 항상 실행
 
             // 반복 실행시 초기값 초기화
+            operCount = 0;
             operator = 0;
             idx = -1;
 

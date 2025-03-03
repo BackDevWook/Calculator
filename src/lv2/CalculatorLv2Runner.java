@@ -24,6 +24,7 @@ public class CalculatorLv2Runner {
         while (true) { // 계산기는 항상 실행
 
             // 반복 실행시 초기화
+            operatorCnt = 0;
             operator = 0;
             idx = -1;
 
@@ -33,7 +34,7 @@ public class CalculatorLv2Runner {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
-            if (formula.trim().equalsIgnoreCase("delete")) { // 계산 첫번째 기록부터 삭제 (대소문자, 앞 뒤 공백 무시)
+            if (formula.trim().equalsIgnoreCase("del")) { // 계산 첫번째 기록부터 삭제 (대소문자, 앞 뒤 공백 무시)
                 if (count == 0) { // 기록이 없을 경우 인덱스 범위 초과 에러 방지
                     System.out.println("삭제할 기록이 없습니다.");
                     System.out.println("수식을 입력하세요... (항은 2개까지 지원합니다. ex: 43+25)");
@@ -66,9 +67,9 @@ public class CalculatorLv2Runner {
                     operator = find; // 사용할 연산자 초기화
                     idx = i; // 연산자 인덱스 초기화
                     operatorCnt++; // 연산자가 2개 이상일 경우 아래에서 오류 처리
+                    break;
                 } else if (!Character.isDigit(find)) { // 숫자가 아닌 녀석이 있는지 찾기
                     idx = -1;
-                    break;
                 }
             }
 
