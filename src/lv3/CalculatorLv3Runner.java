@@ -59,9 +59,6 @@ public class CalculatorLv3Runner {
                 // 계산 결과 출력 및 계산 기록 리스트에 저장
                 IO.resultDisplayAndSave(result);
 
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("잘못된 수식입니다. 다시 입력하세요.");
-                continue;
             } catch (NumberFormatException e) {
                 System.out.println("잘못된 수식입니다. 다시 입력하세요.");
                 continue;
